@@ -10,3 +10,6 @@ elif b > a:
     min = a
     print (f"{max} is gorter dan {min}")
 else:print("a en b zijn gelijk!")
+print (f"Het minmimum is: {min}")
+print (f"Het maximum is: {max}")
+
