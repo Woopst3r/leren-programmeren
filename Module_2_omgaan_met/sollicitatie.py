@@ -7,8 +7,12 @@ print("""
        is er een mogelijkheid dat je bij ons een ruimtevulisman
        kan worden. De vragen starten nu.                         
        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++""")
-naam = (input("Wat is u naam? : "))
+naam = (input("Wat is u naam? : ")) 
+if naam == "Jussef":
+    raise NameError("Ga weg man!")
 leeftijd = int(input("Wat is jouw leeftijd?: "))
+if leeftijd < 22:
+    raise ValueError("Ga terug naar school!")
 geslacht = input("Wat is jouw geslacht? m/v:  ")
 if geslacht == "m":
     snor= input("Heeft u een snor? j/n: ")
@@ -19,6 +23,8 @@ else:
     if rood == "j":
         krul_lengte = int(input("Hoe lang is u haar in cm?: "))
 lengte = int(input("What is u lengte in cm?: "))
+if lengte > 220:
+    raise ValueError("Sorry, maar er past geen reus in ons ruimteraket.")
 gewicht = int(input("What momenteel u gewicht?: "))
 certificaat = input("heeft u een certificaat Overleven met gevaarlijk personeel? j/n: ")
 dieren_dressuur = int(input("Hoeveel jaar praktijkervaring heeft u met dieren-dressuur?: "))
