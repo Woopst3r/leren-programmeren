@@ -7,4 +7,3 @@ for tafels in range (countdown):
     print (countdown - tafels)
 print ("Lift off!!!")
     
-
