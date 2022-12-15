@@ -1,4 +1,11 @@
-for tijd in range (1,13):   
-    print(f"{tijd} am") 
-for tijds in range (1,13):  
-    print(f"{tijds} pm")
+Value = 1
+
+
+while Value <12:
+    print(f"{Value} am") 
+    Value = Value + 1
+Value = 12
+while Value <= 22:
+    print(f"{Value - 11} pm")
+    Value = Value + 1
+print ("12 am")
