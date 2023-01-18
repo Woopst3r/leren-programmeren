@@ -10,5 +10,4 @@ for x in range(stap):
     robotArm.drop()
     robotArm.moveRight()
 
-robotArm.scan() 
 robotArm.wait()
