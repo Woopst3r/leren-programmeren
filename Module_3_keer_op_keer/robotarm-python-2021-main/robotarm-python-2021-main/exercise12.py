@@ -1,6 +1,6 @@
 from RobotArm import RobotArm
 
-robotArm = RobotArm('exercise 1')
+robotArm = RobotArm('exercise 12')
 
 stap = 9
 for x in range(0,9):
