@@ -12,43 +12,47 @@ max_rounds = 20
 achterelkaar_fails = 0
 max_achterelkaar_fails = 10
 
-#genereert een nummer tussen 1-1000
-antword = random.randint(1,1000)
+while rounds < max_rounds:
+    #generates a random number between 1-1000
+    antword = random.randint(1,1000)
+    #increases the round by 1
+    rounds += 1
+    #resets the number of consecutive fails for each new round
+    achterelkaar_fails = 0
 
-#vraag je om een getal te geven tussen 1-1000.
-while rounds < max_rounds:  
-    try:
-        guess = int(input("Geef een getal tussen 1-1000: "))
-        
-        #verhoogt ronde met 1
-        rounds += 1
+    #prompts the user to input a number between 1-1000
 
-        #coontroleren of het graden getal correct is
-        
-        if guess == antword:
-            print ("Correct je hebt het juist antword geraden!")
-            score += 2
-            achterelkaar_fails = 0
-            break
-        else:
-            achterelkaar_fails += 1
-            if achterelkaar_fails == max_achterelkaar_fails:
-                print ("Je hebt 10 keer acheter elkaar het verkeerde antword geraden. Het juste antword was", antword)
+    while achterelkaar_fails < max_achterelkaar_fails:
+        try:
+            print(antword)
+            guess = int(input("Geef een getal tussen 1-1000: "))
+
+            #checks if the guessed number is correct
+            if guess == antword:
+                print ("Correct je hebt het juist antword geraden!")
+                score += 1
                 break
             else:
-                if abs (antword-guess) <=50:
-                    print("Warm!")
-                if abs (antword-guess) <=20:
-                    print("Heel Warm!")
-                if guess < antword:
-                    print("Hoger")
-                elif guess > antword:
-                    print("Lager")
-        #print huidige score
-        print("Je huidige score is:", score)
-        if round == max_rounds:
-            print("J hebt alle rondes gebruik: ", rounds, "Het juiste antword was: ", antword)
-        else:
-            print("nog:", max_rounds - rounds, "rondes over")
-    except:
-        print("Type in a falid number.")
+                achterelkaar_fails += 1
+                if achterelkaar_fails == max_achterelkaar_fails:
+                    print ("Je hebt 10 keer acheter elkaar het verkeerde antword geraden. Het juiste antword was", antword)
+                else:
+                    if abs (antword-guess) <=20:
+                        print("Heel Warm!")
+                    elif abs (antword-guess) <=50:
+                        print("Warm!")
+                    if guess < antword:
+                        print("Hoger")
+                    elif guess > antword:
+                        print("Lager")
+            #prints the current score
+            print("Je huidige score is:", score)
+        except:
+            print("Type in a valid number.")
+
+    if round == max_rounds:
+        print("Je hebt alle rondes gebruikt: ", rounds, "Het juiste antword was: ", antword)
+    else:
+        print("Nog", max_rounds - rounds, "rondes over")
+
+    print("Je totale score is: ", score, "van de maximaal", max_score)
