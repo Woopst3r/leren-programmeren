@@ -1,6 +1,6 @@
 import random
 
-kleuren = ("oranje","blauw","groen","bruin")
+kleuren = {"oranje","blauw","groen","bruin"}
 zak = []
 vraag = int(input ("Hoeveel M%M moet er aan de zak toegevoed worden: "))
 
