@@ -1,0 +1,6 @@
+dagen = ("maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag", "zondag")
+print (f"Dit zijn de dagen van de week.{dagen}")
+print (f"Dit zijn alle werk dagen in de week.{dagen[0:5]}")
+print (f"Dit zijn alle weekend dagen.{dagen[5:6]}")
+print (f"Dit zijn de weekend dagen omgekeerd.{dagen[::-1]}")
+print (f"Dit zijn de weekend dagen omgekeerd start zaterdag zondag.{dagen[7:5:-1]}")
