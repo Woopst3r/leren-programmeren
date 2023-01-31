@@ -15,4 +15,3 @@ while vraag > 0:
 for key, value in zak.items():
     if value > 0:
         print(key, ":", value)
-
