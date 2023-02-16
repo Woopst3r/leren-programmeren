@@ -1,6 +1,6 @@
 from fruitmand import fruitmand
+from operator import itemgetter
 
-sorted_list = sorted(fruitmand, key=lambda k: k['weight'], reverse=True)
-
-for fruit in sorted_list:
-    print(fruit['weight']/1000)
+zwaarsteFruit = sorted(fruitmand, key=itemgetter('weight'), reverse=True)
+for x in range(len(zwaarsteFruit)):
+    print(zwaarsteFruit[x]['name'], zwaarsteFruit[x]['weight'], 'gram')
