@@ -1,0 +1,30 @@
+namen
+lootjes
+dictionary_lijst
+
+
+
+herhaal
+    "Geef een naam op."
+    als naam niet voorkomt in namen
+        naam toevoegen aan namen
+        naam toevoegen aan lootjes
+    als de aantal namen groter dan of gelijk is aan 3
+        "Wil je meer namen toevoegen?"
+        als meer is nee
+            stop herhaal
+            ga verder bij verdelen
+        als meer ja is herhaal
+
+verdelen:
+zolang namen niet leeg is
+    als eerste van namen niet gelijk is aan de eerste van lootjes
+        voeg een combinatie van de eerste van namen en de eerste van lootjes aan dictionary_lijst
+        verwijder de eerste van namen
+        verwijder de eerste van lootjes
+    anders
+        schud door elkaar lootjes
+
+
+
+print dictionary_lijst
