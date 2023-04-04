@@ -42,7 +42,7 @@ while True:
         if choice in ("g", "h"):
             n2 = 2
         nr1, nr2 = True, True
-    if choice == "a":
+    if choice == "a"or choice=="e":
         antwoord = addition(n1, n2)
         print(f"{n1} + {n2} = {antwoord}")
     elif choice == "b":
@@ -54,9 +54,6 @@ while True:
     elif choice == "d":
         antwoord = division(n1, n2)
         print(f"{n1} : {n2} = {antwoord}")
-    elif choice == "e":
-        antwoord = addition(n1, n2) 
-        print(f"{n1} + {n2} = {antwoord}")
     elif choice == "f":
         antwoord = subtraction(n1, n2) 
         print(f"{n1} - {n2} = {antwoord}")
