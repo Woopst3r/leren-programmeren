@@ -22,7 +22,7 @@ def play_game():
     dealer_score = 0
     player_score = 0
     while True:
-        if dealer_score == 3:
+        if dealer_score == 1:
             print("Dealer wins. You lose three fingers.")
             return False
         if player_score == 3:
@@ -42,9 +42,7 @@ def play_game():
             print("Dealer wins!")
             dealer_score += 1
         else:
-            print("You win!")
-            player_score += 1
-            time.sleep(1)
+            print ("Pick one of the options")
     return False
 
 def finger_chop(fingers_left):
@@ -69,8 +67,6 @@ def main():
             play_again = input("Do you want to play again? Type 'yes' or 'no': ").lower()
             if play_again == "no":
                 break
-            else:
-                fingers_left = 10
 
     print(f"Game over. You have {fingers_left} fingers left.")
 
