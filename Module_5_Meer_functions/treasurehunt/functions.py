@@ -35,13 +35,13 @@ def getFromListByKeyIs(list:list, key:str, value:any) -> list:
     return lst
 
 def getAdventuringPeople(people:list) -> list:
-    return getFromListByKeyIs(people, 'advanturing' , True)
+    return getFromListByKeyIs(people, 'adventuring' , True)
 
 def getShareWithFriends(friends:list) -> int:
-    return getShareWithFriends(friends, 'shareWith' , True)
+    return getFromListByKeyIs(friends, 'shareWith' , True)
 
 def getAdventuringFriends(friends:list) -> list:
-    return getAdventuringFriends(friends, 'advanturing' , True)
+    return getFromListByKeyIs(getShareWithFriends(friends), 'adventuring' , True)
 
 ##################### M04.D02.O6 #####################
 
@@ -52,7 +52,7 @@ def getNumberOfTentsNeeded(people:int) -> int:
     return math.ceil(people / 3)
 
 def getTotalRentalCost(horses:int, tents:int) -> float:
-    return (silver2gold(horses * COST_HORSE_SILVER_PER_DAY) * JOURNEY_IN_DAYS) + ((tents * COST_TENT_GOLD_PER_WEEK) * 2) 
+    return (silver2gold(horses * COST_HORSE_SILVER_PER_DAY) * JOURNEY_IN_DAYS) + ((tents * COST_TENT_GOLD_PER_WEEK) * math.ceil(JOURNEY_IN_DAYS / 7)) 
 
 ##################### M04.D02.O7 #####################
 
