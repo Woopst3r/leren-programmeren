@@ -124,6 +124,7 @@ def getTotalInvestorsCosts(investors:list, gear:list) -> float:
 ##################### M04.D02.O10 #####################
 
 def getMaxAmountOfNightsInInn(leftoverGold:float, people:int, horses:int) -> int:
+    BANAAN
     pass
 
 def getJourneyInnCostsInGold(nightsInInn:int, people:int, horses:int) -> float:
