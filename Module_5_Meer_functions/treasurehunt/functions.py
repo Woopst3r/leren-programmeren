@@ -80,18 +80,46 @@ def getItemsValueInGold(items:list) -> float:
 ##################### M04.D02.O8 #####################
 
 def getCashInGoldFromPeople(people:list) -> float:
-    pass
+    total_gold = 0
+    for cash in people:
+        total_gold += copper2gold(cash['cash']['copper'])
+        total_gold += silver2gold(cash["cash"]["silver"])
+        total_gold += platinum2gold(cash["cash"]["platinum"])  
+        total_gold += cash["cash"]["gold"]
+    return total_gold
+
 
 ##################### M04.D02.O9 #####################
 
 def getInterestingInvestors(investors:list) -> list:
-    pass
+    invest_list = []
+    for investor in investors:
+        if investor["profitreturn"] <= 10:
+            invest_list.append(investor)
+    return invest_list
 
 def getAdventuringInvestors(investors:list) -> list:
-    pass
+    adventuring_list = []
+    for investor in getInterestingInvestors(investors):
+        if investor["adventuring"]:
+            adventuring_list.append(investor)
+    return adventuring_list
 
 def getTotalInvestorsCosts(investors:list, gear:list) -> float:
-    pass
+    total_cost = 0
+    adventuring_list = getAdventuringInvestors(investors)
+
+    for investor in getAdventuringInvestors:
+        total_cost += getItemsValueInGold(gear)
+
+    InvestorFood = getJourneyFoodCostsInGold (len (adventuring_list), len(adventuring_list))
+    investorRent = getTotalRentalCost (len(adventuring_list), len (adventuring_list))
+
+    total_cost += InvestorFood + investorRent
+    return total_cost
+
+    
+
 
 ##################### M04.D02.O10 #####################
 
