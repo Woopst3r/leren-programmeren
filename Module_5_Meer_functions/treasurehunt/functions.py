@@ -151,7 +151,49 @@ def getAdventurerCut(profitGold:float, investorsCuts:list, fellowship:int) -> fl
 ##################### M04.D02.O13 #####################
 
 def getEarnigs(profitGold:float, mainCharacter:dict, friends:list, investors:list) -> list:
-    pass
+    people = [mainCharacter] + friends + investors
+    earnings = []
+    
+    adventuringFriends = getAdventuringFriends(friends)
+    
+    adventuringInvestors = getAdventuringInvestors(investors)
+    interestingInvestors = getInterestingInvestors(investors)
+    
+    investorsCuts = getInvestorsCuts(profitGold, investors)
+    
+    goldCut = profitGold - sum(investorsCuts)
+    endGold = 0
+    
+    for person in people: 
+        name = person['name'] # pakt de naam uit.
+        startGold = getCashInGoldFromPeople([person]) # Berekent hoeveel goud ze bijzig hebben.
+
+        if person in interestingInvestors and person in adventuringInvestors: # Hoeveel goud een investeerder krijg die geïnteresseerd is en mee gaat op avontuur
+            endGold = startGold + investorsCuts[investors.index(person)] + goldCut / len([mainCharacter] + adventuringFriends + adventuringInvestors)
+
+        elif person in interestingInvestors: # Hoeveel goud geïnteresseerde investeerders krijgen
+            endGold = startGold + investorsCuts[investors.index(person)]
+
+        elif person in investors and person not in interestingInvestors: # Wat investeerders krijgen die niks mee te maken hebben
+            endGold = startGold
+        
+        elif person in adventuringFriends: # Hoeveel goud vrienden krijgen die op avontuur gaan
+            endGold = startGold + (goldCut / len([mainCharacter] + adventuringFriends + adventuringInvestors)) - 10 
+            earnings[0]['end'] += 10
+
+        elif person in friends and person not in adventuringFriends: # Hoeveel goud vrienden krijgen die je niet deelt
+            endGold = startGold
+
+        else: # Hoeveel de maincharacter krijgt
+            endGold += startGold + goldCut / len([mainCharacter] + adventuringFriends + adventuringInvestors)
+        
+        earnings.append({
+        'name'   : name,
+        'start'  : startGold,
+        'end'    : round(endGold, 2)
+        })
+
+    return earnings
 
 ##################### view functions #####################
 def print_colorvars(txt:str='{}', vars:list=[], color:str='yellow') -> None:
