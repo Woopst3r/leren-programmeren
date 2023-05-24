@@ -81,11 +81,11 @@ def getItemsValueInGold(items:list) -> float:
 
 def getCashInGoldFromPeople(people:list) -> float:
     total_gold = 0
-    for cash in people:
-        total_gold += copper2gold(cash['cash']['copper'])
-        total_gold += silver2gold(cash["cash"]["silver"])
-        total_gold += platinum2gold(cash["cash"]["platinum"])  
-        total_gold += cash["cash"]["gold"]
+    for person in people:
+        total_gold += copper2gold(person['cash']['copper'])
+        total_gold += silver2gold(person["cash"]["silver"])
+        total_gold += platinum2gold(person["cash"]["platinum"])  
+        total_gold += person["cash"]["gold"]
     return total_gold
 
 
@@ -106,16 +106,15 @@ def getAdventuringInvestors(investors:list) -> list:
     return adventuring_list
 
 def getTotalInvestorsCosts(investors:list, gear:list) -> float:
-    total_cost = 0
-    adventuring_list = getAdventuringInvestors(investors)
+    adventuring_len = len(getAdventuringInvestors(investors))
 
-    for investor in getAdventuringInvestors(investors):
-        total_cost += getItemsValueInGold(gear)
+    
+    gear_cost = adventuring_len * getItemsValueInGold(gear)
 
-    InvestorFood = getJourneyFoodCostsInGold (len (adventuring_list), len(adventuring_list))
-    investorRent = getTotalRentalCost (len(adventuring_list), len (adventuring_list))
+    InvestorFood = getJourneyFoodCostsInGold (adventuring_len, adventuring_len)
+    investorRent = getTotalRentalCost (adventuring_len, adventuring_len)
 
-    total_cost += InvestorFood + investorRent
+    total_cost = gear_cost + InvestorFood + investorRent
     return total_cost
 
     
@@ -127,7 +126,7 @@ def getMaxAmountOfNightsInInn(leftoverGold:float, people:int, horses:int) -> int
     HumanInn = silver2gold(people* COST_INN_HUMAN_SILVER_PER_NIGHT)
     HorsesInn = copper2gold(horses * COST_INN_HORSE_COPPER_PER_NIGHT)
 
-    return round(leftoverGold/(HumanInn + HorsesInn))
+    return math.floor(leftoverGold/(HumanInn + HorsesInn))
 
 def getJourneyInnCostsInGold(nightsInInn:int, people:int, horses:int) -> float:
     HumanInn = silver2gold(people* COST_INN_HUMAN_SILVER_PER_NIGHT)
@@ -160,12 +159,11 @@ def getEarnigs(profitGold:float, mainCharacter:dict, friends:list, investors:lis
     interestingInvestors = getInterestingInvestors(investors)
     
     investorsCuts = getInvestorsCuts(profitGold, investors)
-    
+    adventurercut = getAdventurerCut(profitGold, investorsCuts, len (adventuringFriends + adventuringInvestors)+1) 
     goldCut = profitGold - sum(investorsCuts)
     endGold = 0
     
     for person in people: 
-        name = person['name'] # pakt de naam uit.
         startGold = getCashInGoldFromPeople([person]) # Berekent hoeveel goud ze bijzig hebben.
 
         if person in interestingInvestors and person in adventuringInvestors: # Hoeveel goud een investeerder krijg die geïnteresseerd is en mee gaat op avontuur
@@ -185,10 +183,10 @@ def getEarnigs(profitGold:float, mainCharacter:dict, friends:list, investors:lis
             endGold = startGold
 
         else: # Hoeveel de maincharacter krijgt
-            endGold += startGold + goldCut / len([mainCharacter] + adventuringFriends + adventuringInvestors)
+            endGold += startGold + adventurercut
         
         earnings.append({
-        'name'   : name,
+        'name'   : person['name'],
         'start'  : startGold,
         'end'    : round(endGold, 2)
         })
